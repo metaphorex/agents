@@ -1,0 +1,12 @@
+{
+  "name": "metaphorex-agents",
+  "version": "0.1.0",
+  "description": "Content pipeline agents for Metaphorex — Prospector, Miner, and Assayer",
+  "author": {
+    "name": "Metaphorex",
+    "url": "https://github.com/metaphorex"
+  },
+  "repository": "https://github.com/metaphorex/agents",
+  "license": "MIT",
+  "keywords": ["metaphor", "knowledge-graph", "content-pipeline", "extraction"]
+}
