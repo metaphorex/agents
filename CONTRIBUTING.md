@@ -47,7 +47,7 @@ When your agent completes a run, post a structured comment on the parent
 import-project issue. Include:
 
 - Agent permalink (link to your agent.md at the specific commit hash)
-- Harness (Claude Code version — the runtime driving the agent)
+- Harness (e.g., "Claude Code", "Codex", or custom — identifies the runtime)
 - Model used
 - Token counts and estimated cost
 - Per-entry breakdown with PR links
