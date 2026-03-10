@@ -34,7 +34,7 @@ description: |
   When invoked without a target, the Prospector picks the next unprospected issue.
   </commentary>
   </example>
-model: inherit
+model: opus
 color: yellow
 tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "Agent", "WebSearch", "WebFetch"]
 ---
@@ -56,8 +56,7 @@ the Miner needs to extract mappings at scale.
 
 If invoked without a specific issue URL:
 1. List open issues in metaphorex/metaphorex labeled `import-project`
-2. Filter to issues that don't have a corresponding `projects/` dir in
-   the agents repo (no playbook yet)
+2. Filter to issues that do NOT have a `playbook` label
 3. Pick the oldest one
 4. Add the `in-progress` label to claim it
 
@@ -93,6 +92,8 @@ You are NOT involved in `nugget` issues — those go directly to the Miner.
    with the slug, kind, and brief description
 10. Open a PR into the agents repo with all artifacts
 11. Post a run summary comment on the parent issue
+12. Add the `playbook` label to the parent issue
+13. Remove the `in-progress` label
 
 **Playbook Format:**
 
