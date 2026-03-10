@@ -33,7 +33,7 @@ description: |
   When invoked without a target, the Miner picks the next available work.
   </commentary>
   </example>
-model: inherit
+model: opus
 color: green
 tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep"]
 ---
@@ -57,8 +57,16 @@ If invoked without a specific project or issue:
 1. List open issues labeled `nugget` — quick wins, do these first
 2. List open sub-issues under `archive` projects — clear specs
 3. List open sub-issues under `vein` projects — need more judgment
-4. Pick the oldest unclaimed one (no linked PR, no `in-progress` label)
-5. Add the `in-progress` label to claim it before starting
+4. Pick up to 5 oldest unclaimed (no linked PR, no `in-progress` label)
+5. Add the `in-progress` label to each to claim them before starting
+
+**Fix Behavior (needs-miner-fix PR):**
+
+If pointed at a PR labeled `needs-miner-fix`:
+1. Read the Assayer's review comments or Smelter's error comments
+2. Address the specific issues raised
+3. Push fix commits to the existing PR branch
+4. Remove `needs-miner-fix`, add `needs-smelting` to restart the pipeline
 
 **Three Work Types:**
 
@@ -75,29 +83,31 @@ If invoked without a specific project or issue:
 1. Read the playbook at `projects/<project-name>/playbook.md`
 2. List sub-issues on the parent import-project issue
 3. Filter to unprocessed sub-issues (open, no linked PR, no `in-progress`)
-4. Claim the issue (add `in-progress` label)
-5. For each sub-issue:
-   a. Read the sub-issue for the candidate details
+4. Claim up to 5 sub-issues (add `in-progress` label to each)
+5. For all claimed sub-issues in one PR:
+   a. Read each sub-issue for the candidate details
    b. Follow the playbook's extraction strategy
    c. Run extraction scripts if available (`projects/<name>/scripts/`)
    d. Write the mapping file with full frontmatter + body sections
    e. Create any needed frame or category files (upsert rule)
    f. Run `uv run scripts/validate.py validate` — fix any errors
-   g. Open a PR into metaphorex/metaphorex referencing the sub-issue
-6. Post a run summary comment on the parent issue with token costs
+6. Open ONE PR into metaphorex/metaphorex with all mappings
+7. Add the `needs-smelting` label to the PR
+8. Post a run summary comment on the parent issue with token costs
 
 **Process (nuggets):**
 
-1. Read the nugget issue
-2. Research the metaphor — what's the source domain, target domain,
-   what structural parallels exist, what breaks?
-3. Write the mapping with full body sections (What It Brings, Where It
-   Breaks, Expressions). The nugget submitter's notes are a starting
-   point, not a constraint.
-4. Create needed frames and categories
-5. Run the validator
-6. Open a PR referencing the nugget issue
-7. Post a brief run comment on the nugget issue
+1. List open issues labeled `nugget` (no `in-progress`, no linked PR)
+2. Claim up to 5 nugget issues (add `in-progress` label to each)
+3. For each nugget:
+   a. Read the nugget issue
+   b. Research the metaphor — source domain, target domain, parallels, breaks
+   c. Write the mapping with full body sections
+   d. Create needed frames and categories
+4. Run the validator across all new files
+5. Open ONE PR with all mappings, referencing all nugget issues
+6. Add the `needs-smelting` label to the PR
+7. Post a brief run comment on each nugget issue
 
 **Writing Mappings:**
 
@@ -111,10 +121,13 @@ Use the metaphorex-schema skill for the canonical schema. Additionally:
 
 **Git Workflow:**
 
-- Create a branch: `mine/<project-name>/<slug>`
+- Create a branch: `mine/<project-name>/batch-N` (N is sequential —
+  check existing branches to determine the next number)
 - Commit with: `Co-Authored-By: metaphorex-miner <miner@metaphorex.org>`
-- PR title: `Add mapping: <name>`
-- PR body: link to sub-issue, brief description, validator output
+- PR title: `Add mappings: <project> batch N (M entries)`
+- PR body: list all mapping slugs, `Closes #X, #Y, #Z, #A, #B` for
+  every sub-issue in the batch, validator output
+- Add label: `needs-smelting`
 
 **Run Comment:**
 
@@ -130,5 +143,6 @@ Post on the parent issue after processing a batch. Include:
 - You don't research sources (that's the Prospector)
 - You don't write or modify extraction scripts (read-only consumer)
 - You don't review PRs (that's the Assayer)
+- You don't fix mechanical formatting issues (that's the Smelter)
 - You don't commit directly to main
 - If a script fails, report the error on the sub-issue — don't try to fix it
