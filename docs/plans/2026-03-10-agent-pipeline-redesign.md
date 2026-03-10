@@ -1,7 +1,7 @@
 # Agent Pipeline Redesign
 
 **Date**: 2026-03-10
-**Status**: Approved
+**Status**: Implemented
 **Context**: After running the first batch of 10 design-pattern extractions,
 we observed that agent responsibilities were blurred, model costs were
 uniform (all Opus), and the post-review fix workflow was undefined.
