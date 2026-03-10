@@ -1,7 +1,7 @@
 {
   "name": "metaphorex-agents",
   "version": "0.1.0",
-  "description": "Content pipeline agents for Metaphorex — Prospector, Miner, and Assayer",
+  "description": "Content pipeline agents for Metaphorex — Prospector, Miner, Smelter, Assayer, and Pitboss",
   "author": {
     "name": "Metaphorex",
     "url": "https://github.com/metaphorex"
