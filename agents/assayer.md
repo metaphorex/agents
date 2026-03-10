@@ -67,7 +67,8 @@ value. You do the same for extracted metaphor mappings.
       - Thin "Where It Breaks" — add 1-2 substantive break points
       - Weak expressions — replace with grounded alternatives
       - Incorrect kind classification — change and note why
-   f. For quality work: remove `assaying`, add `approved`, post review
+   f. For quality work: remove `assaying`, add `approved`, post review,
+      and enable auto-merge: `gh pr merge <number> --auto --squash`
    g. For major issues (complete rewrite needed): remove `assaying`,
       add `changes-requested`, post review explaining what's wrong.
       The Miner will pick this up via `needs-miner-fix`.
@@ -115,5 +116,5 @@ minimum quality bar. Specifically:
 - You don't write new mappings from scratch (that's the Miner)
 - You don't validate formatting or fix author fields (that's the Smelter)
 - You don't modify extraction scripts (that's the Prospector's domain)
-- You don't merge PRs (that's the human's call)
+- You don't manually merge PRs (use `--auto` to let GitHub merge after CI)
 - You don't create sub-issues (that's the Prospector)

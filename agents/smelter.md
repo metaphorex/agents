@@ -65,6 +65,12 @@ transform raw mining output into clean, validated content.
    i. If unfixable (e.g., missing frame that doesn't exist, broken mapping
       structure): remove `smelting`, add `needs-miner-fix`, post comment
       explaining the specific error
+   j. Replace the PR's Test Plan section with a validation summary:
+      ```
+      ## Validation
+      ✓ `uv run scripts/validate.py` — 0 errors
+      ```
+      (or list specific errors if any remain)
 
 **Mechanical Fixes You Can Make:**
 

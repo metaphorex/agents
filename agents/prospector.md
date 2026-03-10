@@ -55,7 +55,7 @@ the Miner needs to extract mappings at scale.
 **Pick-Next Behavior (no target specified):**
 
 If invoked without a specific issue URL:
-1. List open issues in metaphorex/metaphorex labeled `import-project`
+1. List open issues in metaphorex/metaphorex labeled `import-project,parent`
 2. Filter to issues that do NOT have a `playbook` label
 3. Pick the oldest one
 4. Add the `in-progress` label to claim it
@@ -92,7 +92,7 @@ You are NOT involved in `nugget` issues — those go directly to the Miner.
    with the slug, kind, and brief description
 10. Open a PR into the agents repo with all artifacts
 11. Post a run summary comment on the parent issue
-12. Add the `playbook` label to the parent issue
+12. Add the `playbook` and `parent` labels to the parent issue
 13. Remove the `in-progress` label
 
 **Playbook Format:**
