@@ -11,8 +11,8 @@ knowledge graph of metaphors at https://github.com/metaphorex/metaphorex.
 
 ## Terminology
 
-- **Mapping** — the main content unit. A conceptual metaphor, design pattern,
-  archetype, or cross-field mapping between a source and target domain.
+- **Mapping** — the main content unit. A conceptual metaphor, archetype,
+  dead metaphor, or paradigm linking a source and target domain.
 - **Expression** — a specific instance of a mapping (e.g., "the server is
   choking" is an expression of PROGRAM FAILURE IS BODILY FAILURE).
 - **Frame** — a conceptual domain with structural roles.
@@ -35,14 +35,20 @@ related: []                      # slugs of related mappings
 ---
 ```
 
-### Valid Kinds
+### Valid Kinds (2x2 grid)
 
-- `conceptual-metaphor` — abstract mapping (ARGUMENT IS WAR)
-- `design-pattern` — recurring named pattern with metaphorical structure
-- `archetype` — deep recurring figure/narrative pattern
-- `cross-field-mapping` — specific concept from domain A illuminates domain B
-- `dead-metaphor` — metaphor so embedded it's forgotten
-- `paradigm` — foundational framing that shapes entire fields
+Four kinds along two axes — **specific vs generative** and **source active vs dormant**:
+
+- `conceptual-metaphor` — specific A→B mapping where source domain is still active in people's minds (ARGUMENT IS WAR)
+- `archetype` — generative pattern appearing across many A→B pairs (The Trickster, The Commons)
+- `dead-metaphor` — specific mapping where source domain is forgotten; value is reactivating it (bottleneck, firewall)
+- `paradigm` — meta-level foundational frame that shapes how entire fields think (survival of the fittest)
+
+Previously `design-pattern` and `cross-field-mapping` existed but were removed:
+design-pattern is just a conceptual-metaphor with provenance (the GoF book
+named it; that doesn't change its graph structure), and cross-field-mapping
+collapsed into conceptual-metaphor because the conscious/unconscious
+distinction didn't hold in practice.
 
 ### No status field
 
