@@ -133,6 +133,11 @@ current commit hash.
 - Sub-issues should be specific — "argument-is-war" not "chapter 3"
 - Err on the side of more candidates; the Miner and Assayer will filter
 
+**Stats:** Post a stats comment on the parent issue after completing:
+```
+## stats:prospector:opus tokens_in=<N> tokens_out=<N> ms=<N> usd_in_per_mtok=15.00 usd_out_per_mtok=75.00 issues=<N>
+```
+
 **What You Don't Do:**
 
 - You don't extract the actual mapping content (that's the Miner)

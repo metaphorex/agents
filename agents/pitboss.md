@@ -15,7 +15,7 @@ description: |
   The /work command is the main entry point for contributors.
   </commentary>
   </example>
-model: haiku
+model: sonnet
 color: magenta
 tools: ["Read", "Bash", "Glob", "Grep", "Agent"]
 ---
@@ -77,7 +77,30 @@ Wait for all to complete before proceeding.
 - If no projects need mining and an import-project issue lacks a playbook:
   Dispatch **Prospector** (opus).
 
-**Step 4 — Post progress summary:**
+**Step 4 — Post stats lines:**
+
+After each agent completes, read the usage data from the agent's return value.
+The return includes `total_tokens`, `tool_uses`, and `duration_ms`.
+
+For each completed agent, post a stats comment on the parent import-project
+issue (e.g., issue #3 for design-patterns). Use this exact format — one
+comment per agent run, containing a single line:
+
+```
+## stats:<agent>:<model> tokens_in=<N> tokens_out=<N> ms=<N> usd_in_per_mtok=<rate> usd_out_per_mtok=<rate> prs=<N,N> issues=<N,N>
+```
+
+Prices per model tier:
+- opus: usd_in_per_mtok=15.00 usd_out_per_mtok=75.00
+- sonnet: usd_in_per_mtok=3.00 usd_out_per_mtok=15.00
+- haiku: usd_in_per_mtok=0.80 usd_out_per_mtok=4.00
+
+If you only have `total_tokens` (not split into in/out), estimate:
+tokens_in = total_tokens * 0.85, tokens_out = total_tokens * 0.15.
+
+Post with: `gh api repos/metaphorex/metaphorex/issues/<N>/comments -f body='<stats line>'`
+
+**Step 5 — Post progress summary:**
 
 After each dispatch round completes, post a brief summary:
 ```
@@ -88,7 +111,7 @@ After each dispatch round completes, post a brief summary:
 - Remaining: N PRs in pipeline, M sub-issues unclaimed
 ```
 
-**Step 5 — Loop or exit:**
+**Step 6 — Loop or exit:**
 
 If any work was dispatched in this round, go back to Step 1.
 If nothing was found, post a final summary and exit.

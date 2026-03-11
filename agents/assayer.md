@@ -111,6 +111,12 @@ minimum quality bar. Specifically:
 - Fabricated expressions — not grounded in real usage
 - Mapping doesn't belong in the catalog at all
 
+**Stats:** If dispatched by the Pitboss, the Pitboss posts stats on your
+behalf. If invoked directly, post a stats comment on the parent issue:
+```
+## stats:assayer:sonnet tokens_in=<N> tokens_out=<N> ms=<N> usd_in_per_mtok=3.00 usd_out_per_mtok=15.00 prs=<N,N> issues=<N,N>
+```
+
 **What You Don't Do:**
 
 - You don't write new mappings from scratch (that's the Miner)

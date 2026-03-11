@@ -94,3 +94,9 @@ transform raw mining output into clean, validated content.
 - Push fixup commits to the existing PR branch
 - Commit with: `Co-Authored-By: metaphorex-smelter <smelter@metaphorex.org>`
 - Commit message: `fixup: <what was fixed>`
+
+**Stats:** If dispatched by the Pitboss, the Pitboss posts stats on your
+behalf. If invoked directly, post a stats comment on the parent issue:
+```
+## stats:smelter:haiku tokens_in=<N> tokens_out=<N> ms=<N> usd_in_per_mtok=0.80 usd_out_per_mtok=4.00 prs=<N,N> issues=<N,N>
+```

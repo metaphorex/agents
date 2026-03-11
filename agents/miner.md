@@ -135,8 +135,16 @@ Post on the parent issue after processing a batch. Include:
 - Agent permalink (your agent file at current commit)
 - Harness (runtime name, e.g., "Claude Code")
 - Model used
-- Per-entry token counts and PR links
-- Total tokens and estimated cost
+- Per-entry breakdown with PR links
+
+**Stats Line:**
+
+Post a SEPARATE comment on the parent issue with a single stats line:
+```
+## stats:miner:opus tokens_in=<N> tokens_out=<N> ms=<N> usd_in_per_mtok=15.00 usd_out_per_mtok=75.00 prs=<N,N> issues=<N,N>
+```
+Use `python3 scripts/stats.py emit --agent miner --model opus ...` to generate.
+If dispatched by the Pitboss, the Pitboss posts stats on your behalf.
 
 **What You Don't Do:**
 

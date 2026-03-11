@@ -5,11 +5,13 @@ for the Metaphorex content pipeline.
 
 ## Agents
 
-| Agent | Role | Trust |
+| Agent | Role | Model |
 |-------|------|-------|
-| **Prospector** | Research sources, build playbooks, create sub-issues | High — writes code |
-| **Miner** | Follow playbooks, extract mapping entries, open PRs | Standard — writes content |
-| **Assayer** | Review + refine Miner output | Standard — reviews + fixes |
+| **Pitboss** | Orchestrate pipeline, dispatch agents, post stats | Sonnet |
+| **Prospector** | Research sources, build playbooks, create sub-issues | Opus |
+| **Miner** | Follow playbooks, extract mapping entries, open PRs | Opus |
+| **Smelter** | Mechanical validation and cleanup of Miner PRs | Haiku |
+| **Assayer** | Review + refine Miner output, approve or bounce | Sonnet |
 
 ## Quick Start
 
@@ -60,6 +62,23 @@ projects/
 Playbooks accumulate extraction knowledge. Scripts provide deterministic
 parsing. Both are created by the Prospector and reviewed before the Miner
 uses them.
+
+## Cost Accounting
+
+Every agent run posts a stats line as a GitHub issue comment on the parent
+import-project issue. Format:
+
+```
+## stats:<agent>:<model> tokens_in=N tokens_out=N ms=N usd_in_per_mtok=N usd_out_per_mtok=N prs=N,N issues=N,N
+```
+
+Summarize costs for a project:
+```bash
+gh api repos/metaphorex/metaphorex/issues/3/comments --paginate \
+    --jq '.[].body' | python3 scripts/stats.py summary
+```
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full spec.
 
 ## Contributing
 
