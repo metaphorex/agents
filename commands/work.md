@@ -41,7 +41,8 @@ so the user sees progress.
    - If `needs_assay` is non-empty: TaskCreate "Assaying PRs...", then
      dispatch `metaphorex-agents:assayer` with model `sonnet`
    - If `needs_miner_fix` is non-empty: TaskCreate "Fixing flagged PRs...",
-     then dispatch `metaphorex-agents:miner` with model `opus`
+     then dispatch `metaphorex-agents:miner` with model `opus`,
+     isolation `worktree`
 
 2. **Wait** for all parallel agents to complete. As each finishes, TaskUpdate
    its spinner to completed.
@@ -49,7 +50,7 @@ so the user sees progress.
 3. **New mining work** — only if no `in_progress` items exist:
    - Take up to 5 unclaimed issues from the survey
    - TaskCreate "Mining 5 issues...", dispatch `metaphorex-agents:miner`
-     with model `opus`, run_in_background: true
+     with model `opus`, isolation `worktree`, run_in_background: true
    - Wait for completion, TaskUpdate to completed
 
 4. **Prospecting** — only if no mining or fix work was dispatched:
@@ -59,12 +60,12 @@ so the user sees progress.
 
 **Agent dispatch reference:**
 
-| Agent | subagent_type | model |
-|-------|---------------|-------|
-| Smelter | metaphorex-agents:smelter | haiku |
-| Assayer | metaphorex-agents:assayer | sonnet |
-| Miner | metaphorex-agents:miner | opus |
-| Prospector | metaphorex-agents:prospector | opus |
+| Agent | subagent_type | model | isolation |
+|-------|---------------|-------|-----------|
+| Smelter | metaphorex-agents:smelter | haiku | — |
+| Assayer | metaphorex-agents:assayer | sonnet | — |
+| Miner | metaphorex-agents:miner | opus | worktree |
+| Prospector | metaphorex-agents:prospector | opus | — |
 
 ## Phase C — Round summary & loop
 
