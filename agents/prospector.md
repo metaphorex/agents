@@ -57,6 +57,17 @@ the Miner needs to extract mappings at scale.
 your manifest. This prevents polluting GitHub with bad issues from an
 unverified candidate list.
 
+**Re-Prospecting (`needs-rework` items):**
+
+When dispatched for a `needs-rework` issue, the previous prospecting was
+rejected. Before starting fresh:
+1. Close all existing sub-issues of the parent issue (they came from the
+   bad manifest). Use: `gh issue close <N> --repo <repo> --comment "Closing: parent project is being re-prospected with archive-first methodology."`
+2. Remove the old `projects/<name>/` directory contents (playbook, manifest,
+   scripts) — your new PR will replace them
+3. Remove `needs-rework` label, add `in-progress` label
+4. Then proceed with the normal prospecting process below
+
 **Pick-Next Behavior (no target specified):**
 
 If invoked without a specific issue URL:
